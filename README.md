@@ -17,6 +17,29 @@ Each **rider** should have information uniquely identifying them like name, phon
 
 Each **trip** should have information uniquely identifying it like a rider object, a driver object, date & time, rating. Ratings are required to be set within a pre-determined range.
 
+## Verification
+The following concepts should be testable in your application.
+
+#### Driver
+- Given a driver object, you should be able to retrieve the list of trip instances that only this driver has taken
+- Given a driver object, you should be able to retrieve a numeric average rating for that specific driver
+- You should be able to retrieve all drivers from the CSV file
+- You should be able to find a specific driver using their numeric ID
+
+#### Rider
+- Given a rider object, you should be able to retrieve the list of trip instances that only this rider has taken
+- Given a rider object, you should be able to get the list of all previous drivers (through the trips)
+- You should be able to retrieve all riders from the CSV file
+- You should be able to find a specific rider using their numeric ID
+
+#### Trip
+- For any trip object, you should be able to retrieve the associated driver instance
+- For any trip object, you should be able to retrieve the associated rider instance
+- You should be able to retrieve all trips from the CSV file and associate each of them with their corresponding driver object and rider object
+- You should be able to find a specific trip using the numeric ID
+- You should be able to find all trips for a given driver
+- You should be able to find all trips for a given rider
+
 ## Getting Started
 This is a level 3, individual project.
 
@@ -45,3 +68,6 @@ Create a diagram that describes how each of these classes and methods (messages)
 1. Create a test to check the instantiation of one of your object types (**RED**)
 1. Create the class for the object tested in the step above (**GREEN**)
 1. Use git add, commit and push commands to push you initial code to GitHub
+
+### Optional
+- Enhance the trip functionality to include support for starting and ending address
