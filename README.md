@@ -17,7 +17,7 @@ Create a system that will manage information related to ride sharing. The system
 #### Driver
 Each driver should:
 - have an ID, name, license plate and vehicle identification number
-  - Each vehicle identification number should abide by a specific pattern or length to ensure it is a valid vehicle identification number
+  - Each vehicle identification number should be a specific length to ensure it is a valid vehicle identification number
 
 Given a driver object, you should be able to:
 - retrieve the list of trip instances that only this driver has taken
@@ -96,6 +96,7 @@ Since this is the **last** Ruby-only project we are doing, and a level 3, the re
 ### Optional Requirements
 - The first optional should always be looking for improvements within the existing code you have already written. Are there any additional edge cases you might be missing in your tests? Any opportunity to use an enumerable method where you're using an each?
 - Enhance the trip functionality to include support for cost and duration
+  - Update your CSV file accordingly
 - For a given rider, add the ability to return the total amount of money they have spent on all trips
 - For a given rider, add the ability to return the total amount of time they have spent on their trips
 - For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
