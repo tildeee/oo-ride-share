@@ -68,7 +68,7 @@ Create a diagram that describes how each of these classes and methods (messages)
 1. Use git add, commit and push commands to push your initial code to GitHub
 
 ### Process
-You should use the following process as much as possible:
+You should use the following process as much as possible:  
 1. Write pseudocode  
 1. Write test(s)  
 1. Write code  
