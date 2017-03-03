@@ -69,9 +69,9 @@ Create a diagram that describes how each of these classes and methods (messages)
 
 ### Process
 You should use the following process as much as possible:
-1. Write pseudocode
-1. Write test(s)
-1. Write code
+1. Write pseudocode  
+1. Write test(s)  
+1. Write code  
 
 Since this is the **last** Ruby-only project we are doing, and a level 3, the requirements are larger than previous projects. It is possible you will not be able to complete all requirements, but if you use the process above, you will still be able to share with your instructors the process and the design you have created.
 
