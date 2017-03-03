@@ -1,5 +1,7 @@
 # Ride Share
-Remember the ride share exercise we did with designing and creating a system to track the ride share data from a CSV file? We did a lot of great work on this exercise in creating arrays and hashes of data, but we've learned a lot since we did that exercise! Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented implementation of our ride share system.
+Remember the ride share exercise we did with designing and creating a system to track the ride share data from a CSV file? We did a lot of great work on this exercise in creating arrays and hashes of data, but we've learned a lot since we did that exercise!
+
+Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented implementation of our ride share system.
 
 ## Learning Goals
 Reinforce and practice all of the Ruby and programming concepts we've covered in class so far:
@@ -13,28 +15,43 @@ Create a system that will manage information related to ride sharing. The system
 
 
 #### Driver
-- Each driver should have information uniquely identifying them like ID, name, license plate and vehicle identification number
-- Each vehicle identification number should abide by a specific pattern or length to ensure it is a valid vehicle identification number
-- Given a driver object, you should be able to retrieve the list of trip instances that only this driver has taken
-- Given a driver object, you should be able to retrieve an average rating for that driver based on all trips taken
-- You should be able to retrieve all drivers from the CSV file
-- You should be able to find a specific driver using their numeric ID
+Each driver should:
+- have an ID, name, license plate and vehicle identification number
+  - Each vehicle identification number should abide by a specific pattern or length to ensure it is a valid vehicle identification number
+
+Given a driver object, you should be able to:
+- retrieve the list of trip instances that only this driver has taken
+- retrieve an average rating for that driver based on all trips taken
+
+You should be able to:
+- retrieve all drivers from the CSV file
+- find a specific driver using their numeric ID
 
 #### Rider
-- Each rider should have information uniquely identifying them like ID, name and phone number
-- Given a rider object, you should be able to retrieve the list of trip instances that only this rider has taken
-- Given a rider object, you should be able to retrieve the list of all previous driver instances (through the trips functionality built above)
-- You should be able to retrieve all riders from the CSV file
-- You should be able to find a specific rider using their numeric ID
+Each rider should:
+- have an ID, name and phone number
+
+Given a rider object, you should be able to:
+- retrieve the list of trip instances that only this rider has taken
+- retrieve the list of all previous driver instances (through the trips functionality built above)
+
+You should be able to:
+- retrieve all riders from the CSV file
+- find a specific rider using their numeric ID
 
 #### Trip
-- Each trip should have information uniquely identifying it like ID, rider ID, a driver ID, date, rating
-- Each rating should be within an acceptable range (1-5)
-- Given a trip object, you should be able to retrieve the associated driver instance through the driver ID
-- Given a trip object, you should be able to retrieve the associated rider instance through the rider ID
-- You should be able to find all trip instances for a given driver ID
-- You should be able to find all trip instances for a given rider ID
-- You should be able to retrieve all trips from the CSV file
+Each trip should:
+- have an ID, rider ID, a driver ID, date, rating
+-   Each rating should be within an acceptable range (1-5)
+
+Given a trip object, you should be able to:
+- retrieve the associated driver instance through the driver ID
+- retrieve the associated rider instance through the rider ID
+
+You should be able to:
+- find all trip instances for a given driver ID
+- find all trip instances for a given rider ID
+- retrieve all trips from the CSV file
 
 ## Getting Started
 This is a level 3, individual project.
@@ -59,8 +76,8 @@ After a few minutes, then you'll get together with your seat squad to discuss th
 Create a diagram that describes how each of these classes and methods (messages) will interact with one another as well as the CSV files.
 
 ### Setup
-1. You will fork this repository in GitHub
-1. You will git clone the repository to your computer
+1. Fork this repository in GitHub
+1. Clone the repository to your computer
 1. Create/copy a rakefile to run your tests
 1. Create a spec helper file to load your classes and start up simple coverage
 1. Create a test to check the instantiation of one of your object types (**RED**)
