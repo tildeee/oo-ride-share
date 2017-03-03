@@ -60,11 +60,21 @@ Create a diagram that describes how each of these classes and methods (messages)
 ### Setup
 1. You will fork this repository in GitHub
 1. You will git clone the repository to your computer
+1. Create/copy a rakefile to run your tests
+1. Create a spec helper file to load your classes and start up simple coverage
 1. Create a test to check the instantiation of one of your object types (**RED**)
 1. Create the class for the object tested in the step above (**GREEN**)
-1. Use git add, commit and push commands to push you initial code to GitHub
+1. Use git add, commit and push commands to push your initial code to GitHub
 
-### Optional
+### Process
+You should use the following process as much as possible:
+1. Write pseudocode
+1. Write test(s)
+1. Write code
+
+Since this is the **last** Ruby-only project we are doing, and a level 3, the requirements are larger than previous projects. It is possible you will not be able to complete all requirements, but if you use the process above, you will still be able to share with your instructors the process and the design you have created.
+
+### Optional Requirements
 - The first optional should always be looking for improvements within the existing code you have already written. Are there any additional edge cases you might be missing in your tests? Any opportunity to use an enumerable method where you're using an each?
 - Enhance the trip functionality to include support for cost and duration
 - For a given rider, add the ability to return the total amount of money they have spent on all trips
