@@ -11,39 +11,35 @@ Reinforce and practice all of the Ruby and programming concepts we've covered in
 ## Problem Statement
 Create a system that will manage information related to ride sharing. The system should have a way to keep track of drivers, riders and the trips that the drivers take with their riders.
 
-Each **driver** should have information uniquely identifying them like name, license plate and a numeric ID. License plates should abide by a specific pattern or length to ensure they are valid. For each driver, you should track the trips that the driver has taken. Each driver should have a (calculated) average rating based on all of the trips that they have taken.
-
-Each **rider** should have information uniquely identifying them like name, phone number and a numeric ID. Phone numbers should abide by a specific pattern or length to ensure they are valid. For each rider, you should track the trips they have taken. You should be able to see a list of past X (variable) number of trips they have taken.
-
-Each **trip** should have information uniquely identifying it like a rider object, a driver object, date & time, rating. Ratings are required to be set within a pre-determined range.
-
-## Verification
-The following concepts should be testable in your application.
-
 #### Driver
+- Each driver should have information uniquely identifying them like name, license plate and vehicle identification number
+- Each vehicle identification number should abide by a specific pattern or length to ensure it is a vehicle identification number
 - Given a driver object, you should be able to retrieve the list of trip instances that only this driver has taken
-- Given a driver object, you should be able to retrieve a numeric average rating for that specific driver
+- Given a driver object, you should be able to retrieve an average rating for that driver based on all trips taken
 - You should be able to retrieve all drivers from the CSV file
 - You should be able to find a specific driver using their numeric ID
 
 #### Rider
+- Each rider should have information uniquely identifying them like name, phone number and a numeric ID
 - Given a rider object, you should be able to retrieve the list of trip instances that only this rider has taken
 - Given a rider object, you should be able to get the list of all previous drivers (through the trips)
 - You should be able to retrieve all riders from the CSV file
 - You should be able to find a specific rider using their numeric ID
 
 #### Trip
-- For any trip object, you should be able to retrieve the associated driver instance
-- For any trip object, you should be able to retrieve the associated rider instance
-- You should be able to retrieve all trips from the CSV file and associate each of them with their corresponding driver object and rider object
-- You should be able to find a specific trip using the numeric ID
+- Each trip should have information uniquely identifying it like a rider ID, a driver ID, date, rating
+- Each rating should be within an acceptable range (1-5)
+- You should be able to retrieve all trips from the CSV file
+- For any trip object, you should be able to retrieve the associated driver instance through the driver ID
+- For any trip object, you should be able to retrieve the associated rider instance through the rider ID
+<!-- - You should be able to find a specific trip using the numeric ID -->
 - You should be able to find all trips for a given driver
 - You should be able to find all trips for a given rider
 
 ## Getting Started
 This is a level 3, individual project.
 
-We will use the same project structure we used for the previous project. Classes should be in files in the `lib` folder, and tests should be in files in the `specs` folder. You will run tests by executing the `rake` command, as configured in  a Rakefile.
+We will use the same project structure we used for the previous project. Classes should be in files in the `lib` folder, and tests should be in files in the `specs` folder. You should utilize a spec helper file. You will run tests by executing the `rake` command, as configured in  a Rakefile.
 
 The `support` folder contains CSV files which will drive you system design. Each CSV corresponds to a different type of object _as well as_ creating a relationship between different objects.
 
