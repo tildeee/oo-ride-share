@@ -67,6 +67,6 @@ Create a diagram that describes how each of these classes and methods (messages)
 ### Optional
 - The first optional should always be looking for improvements within the existing code you have already written. Are there any additional edge cases you might be missing in your tests? Any opportunity to use an enumerable method where you're using an each?
 - Enhance the trip functionality to include support for cost and duration
-- For a given rider, add the ability to see the total amount of money they have spent on all trips
-- For a given rider, add the ability to see the total amount of time they have spent on their trips
-- For a given rider, calculate their trip revenue.
+- For a given rider, add the ability to return the total amount of money they have spent on all trips
+- For a given rider, add the ability to return the total amount of time they have spent on their trips
+- For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
