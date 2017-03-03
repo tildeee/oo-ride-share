@@ -8,8 +8,9 @@ Reinforce and practice all of the Ruby and programming concepts we've covered in
 - Writing pseudocode and creating tests to drive the creation of our code
 - Importing data from a CSV file
 
-## Problem Statement
+## Primary Requirements
 Create a system that will manage information related to ride sharing. The system should have a way to keep track of drivers, riders and the trips that the drivers take with their riders.
+
 
 #### Driver
 - Each driver should have information uniquely identifying them like ID, name, license plate and vehicle identification number
@@ -38,14 +39,14 @@ Create a system that will manage information related to ride sharing. The system
 ## Getting Started
 This is a level 3, individual project.
 
-We will use the same project structure we used for the previous project. Classes should be in files in the `lib` folder, and tests should be in files in the `specs` folder. You should utilize a spec helper file. You will run tests by executing the `rake` command, as configured in a Rakefile.
+We will use the same project structure we used for the previous project. Classes should be in files in the `lib` folder, and tests should be in files in the `specs` folder. You should utilize a spec helper file. You will run tests by executing the `rake` command, as configured in a Rakefile. You should have **95% code coverage** using simplecov.
 
 The `support` folder contains CSV files which will drive your system design. Each CSV corresponds to a different type of object _as well as_ creating a relationship between different objects.
 
 ## Baseline
 ### Discussion
 #### Phase 1
-Let's start by **individually** creating the list of nouns and verbs that you would utilize in describing this problem.
+Let's start by **individually** creating the list of nouns and verbs that you would utilize to describe this problem.
 
 After a few minutes, then you'll get together with your seat squad to discuss the nouns and verbs you came up with.
 
