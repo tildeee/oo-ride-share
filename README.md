@@ -11,12 +11,11 @@ Reinforce and practice all of the Ruby and programming concepts we've covered in
 - Importing data from a CSV file
 
 ## Primary Requirements
-Create a system that will manage information related to ride sharing. The system should have a way to keep track of drivers, riders and the trips that the drivers take with their riders.
-
+Create a system that will manage information related to ride sharing. The system should have a way to keep track of drivers, passengers and the trips that the drivers take with their passengers.
 
 #### Driver
 Each driver should:
-- have an ID, name, license plate and vehicle identification number
+- have an ID, name, and vehicle identification number
   - Each vehicle identification number should be a specific length to ensure it is a valid vehicle identification number
 
 Given a driver object, you should be able to:
@@ -27,30 +26,30 @@ You should be able to:
 - retrieve all drivers from the CSV file
 - find a specific driver using their numeric ID
 
-#### Rider
-Each rider should:
+#### Passenger
+Each passenger should:
 - have an ID, name and phone number
 
-Given a rider object, you should be able to:
-- retrieve the list of trip instances that only this rider has taken
+Given a passenger object, you should be able to:
+- retrieve the list of trip instances that only this passenger has taken
 - retrieve the list of all previous driver instances (through the trips functionality built above)
 
 You should be able to:
-- retrieve all riders from the CSV file
-- find a specific rider using their numeric ID
+- retrieve all passengers from the CSV file
+- find a specific passenger using their numeric ID
 
 #### Trip
 Each trip should:
-- have an ID, rider ID, a driver ID, date, rating
+- have an ID, passenger ID, a driver ID, date, rating
 -   Each rating should be within an acceptable range (1-5)
 
 Given a trip object, you should be able to:
 - retrieve the associated driver instance through the driver ID
-- retrieve the associated rider instance through the rider ID
+- retrieve the associated passenger instance through the passenger ID
 
 You should be able to:
 - find all trip instances for a given driver ID
-- find all trip instances for a given rider ID
+- find all trip instances for a given passenger ID
 - retrieve all trips from the CSV file
 
 ## Getting Started
@@ -98,6 +97,6 @@ Since this is the **last** Ruby-only project we are doing, and a level 3, the re
 - The first optional should always be looking for improvements within the existing code you have already written. Are there any additional edge cases you might be missing in your tests? Any opportunity to use an enumerable method where you're using an each?
 - Enhance the trip functionality to include support for cost and duration
   - Update your CSV file accordingly
-- For a given rider, add the ability to return the total amount of money they have spent on all trips
-- For a given rider, add the ability to return the total amount of time they have spent on their trips
+- For a given passenger, add the ability to return the total amount of money they have spent on all trips
+- For a given passenger, add the ability to return the total amount of time they have spent on their trips
 - For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
