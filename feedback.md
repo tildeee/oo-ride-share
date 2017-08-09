@@ -11,7 +11,7 @@
 |   Has appropriate edge-case tests for each method in the class |    |
 |   Created a method that uses a method from the `Trip` object to retrieve the list of trips |  |
 |   Created a method that uses the internal trips list to calculate the average rating | |
-|  **Rider** |   |
+|  **Passenger** |   |
 |   Uses the `all` method in the `find` method | |
 |   Has appropriate edge-case tests for each method in the class |    |
 |   Created a method that uses a method from the `Trip` object to retrieve the list of trips |  |
@@ -20,7 +20,7 @@
 |   Reads the CSV file in the `all` method | |
 |   Has appropriate edge-case tests for each method in the class |    |
 |   Created a method that uses a method from the `Driver` to retrieve the associated driver instance  |    |
-|   Created a method that uses a method from the `Rider` to retrieve the associated rider instance |    |
+|   Created a method that uses a method from the `Passenger` to retrieve the associated passenger instance |    |
 |   Created a method to retrieve all trips by driver id |     |
-|   Created a method to retrieve all trips by rider id |      |
+|   Created a method to retrieve all trips by passenger id |      |
 |   **Overall**	|   	|
