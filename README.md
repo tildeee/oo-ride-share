@@ -5,14 +5,54 @@ Now, we're going to use our understanding of classes, methods and attributes to 
 
 ## Learning Goals
 Reinforce and practice all of the Ruby and programming concepts we've covered in class so far:
-- Creating and instantiating classes with attributes
-- Creating class and instance methods within our classes
-- Writing pseudocode and creating tests to drive the creation of our code
-- Importing data from a CSV file
+- Design a system using object-oriented principles
+- Create and instantiate classes with attributes
+- Create class and instance methods within our classes
+- Write pseudocode and create tests to drive the creation of our code
+
+## Expectations
+This project will have requirements that are more open-ended than previous projects you have worked on. This is expected. As this is your final Ruby project, you will be expected to:
+- Make decisions on how to structure your classes and methods
+- Ask questions when you need clarification
+- Acknowledge that the way you implement something may be different than the way your neighbor implements it
+
 
 ## Primary Requirements
+Create a system that will simulate storing all of the data for a ride sharing application. If you are not familiar with how Ride Sharing services work, we'll give a brief overview. Apps like Lyft are available to people with a smartphone. They pair up the users with the drivers, who use their own vehicles to pick up passengers and drive them to their desired destination.
+
 Create a system that will manage information related to ride sharing. The system should have a way to keep track of drivers, passengers and the trips that the drivers take with their passengers.
 
+### User Stories
+### As an administrator
+- I can create a new driver
+- I can create a new passenger
+- I can search for a specific driver based on ID
+- I can search for a specific passenger based on ID
+- I can search for a specific trip based on trip ID
+
+### As a driver
+- I can accept or decline a trip
+- I can start a trip
+- I can stop a trip
+- I can rate my passenger after a trip
+
+- I can view my profile
+- I can edit my profile
+- I can see my average rating
+- I can see the list of trips I have taken
+- I can view a single trip details which includes passenger information
+
+### As a passenger
+- I can request a trip
+- I can rate my driver after a trip
+
+- I can view my profile
+- I can edit my profile
+- I can view my average rating (given from drivers)
+- I can see the list of trips I have taken
+- I can view a single trip details which includes driver information
+
+<!--
 #### Driver
 Each driver should:
 - have an ID, name, and vehicle identification number
@@ -50,16 +90,16 @@ Given a trip object, you should be able to:
 You should be able to:
 - find all trip instances for a given driver ID
 - find all trip instances for a given passenger ID
-- retrieve all trips from the CSV file
+- retrieve all trips from the CSV file -->
 
 ## Getting Started
-This is a level 3, individual project.
+This is a [level 3](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md), individual project.
 
 We will use the same project structure we used for the previous project. Classes should be in files in the `lib` folder, and tests should be in files in the `specs` folder. You should utilize a spec helper file. You will run tests by executing the `rake` command, as configured in a Rakefile. You should have **95% code coverage** using simplecov.
+<!--
+The `support` folder contains CSV files which will drive your system design. Each CSV corresponds to a different type of object _as well as_ creating a relationship between different objects. -->
 
-The `support` folder contains CSV files which will drive your system design. Each CSV corresponds to a different type of object _as well as_ creating a relationship between different objects.
-
-## Baseline
+## Baseline Design
 ### Discussion
 #### Phase 1
 Let's start by **individually** creating the list of nouns and verbs that you would utilize to describe this problem.
@@ -91,12 +131,14 @@ You should use the following process as much as possible:
 1. Write test(s)
 1. Write code
 
-Since this is the **last** Ruby-only project we are doing, and a level 3, the requirements are larger than previous projects. It is possible you will not be able to complete all requirements, but if you use the process above, you will still be able to share with your instructors the process and the design you have created.
+Since this is the **last** Ruby-only project we are doing, and a level 3, the requirements are larger than previous projects. **It is possible you will not be able to complete all requirements**, but if you use the process above, you will still be able to share with your instructors the process and the design you have created.
 
 ### Optional Requirements
 - The first optional should always be looking for improvements within the existing code you have already written. Are there any additional edge cases you might be missing in your tests? Any opportunity to use an enumerable method where you're using an each?
-- Enhance the trip functionality to include support for cost and duration
-  - Update your CSV file accordingly
-- For a given passenger, add the ability to return the total amount of money they have spent on all trips
-- For a given passenger, add the ability to return the total amount of time they have spent on their trips
-- For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
+- Enhance your functionality to create a CSV database to load your initial data set. Hint: Use `Faker`.
+
+### User Stories
+- As a passenger, I can see the total amount of money I've spent on trips
+- As a passenger, I can see the total amount of time I've spent on trips
+- As a driver, I can see the total revenue for all of my trips.
+  - Calculated by giving 80% of the trip cost _after_ a fee of $1.65 is subtracted
