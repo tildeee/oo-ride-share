@@ -36,6 +36,7 @@ Create a system that will manage information related to ride sharing. The system
 - I can stop a trip
 - I can rate my passenger after a trip
 
+
 - I can view my profile
 - I can edit my profile
 - I can see my average rating
@@ -45,9 +46,10 @@ Create a system that will manage information related to ride sharing. The system
 ### As a passenger
 - I can request a trip
 - I can rate my driver after a trip
-
 - I can view my profile
 - I can edit my profile
+
+
 - I can view my average rating (given from drivers)
 - I can see the list of trips I have taken
 - I can view a single trip details which includes driver information
