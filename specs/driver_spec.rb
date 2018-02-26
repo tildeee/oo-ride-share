@@ -3,10 +3,16 @@ require_relative 'spec_helper'
 
 describe "Driver class" do
 
-  it "is an instance of Driver" do
-    test_driver = RideShare::Driver.new(1, "George", 3313)
-    test_driver.must_be_kind_of RideShare::Driver
+  describe "Driver instantiation" do
+    it "is an instance of Driver" do
+      test_driver = RideShare::Driver.new(1, "George", 3313)
+      test_driver.must_be_kind_of RideShare::Driver
+    end
+    it "throws an argument error with a bad ID value" do
+      proc{ RideShare::Driver.new(0, "George", 3313)}.must_raise ArgumentError
+    end
   end
+
 
   describe "get_trips method" do
     before do
@@ -82,10 +88,9 @@ describe "Driver class" do
       driver = RideShare::Driver.find(id)
       driver.id.must_equal id
     end
-    it "raises an error if no RideShare::Driver returned" do
-      proc {RideShare::Driver.find(101)}.must_raise ArgumentError
+    it "returns nil if no Driver found" do
+      RideShare::Driver.find(101).must_equal nil
     end
-
   end
 
 end

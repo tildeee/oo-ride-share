@@ -6,6 +6,10 @@ module RideShare
     attr_reader :id, :name, :vehicle_id
 
     def initialize(id, name, vin)
+      if id == nil || id <= 0
+        raise ArgumentError.new("ID cannot be blank or less than zero.")
+      end
+
       @id = id
       @name = name
       @vehicle_id = vin
@@ -28,28 +32,22 @@ module RideShare
     end
 
     def self.all
-      my_file = CSV.open('support/drivers.csv')
+      my_file = CSV.open('support/drivers.csv', headers: true)
 
       all_drivers = []
       my_file.each do |line|
+
         # Set to a default value
         vin = line[2].length == 17 ? line[2] : "0" * 17
 
         all_drivers << Driver.new(line[0].to_i, line[1], vin)
       end
-      
+
       return all_drivers
     end
 
     def self.find(id)
-      all_drivers = Driver.all
-      found_driver = nil
-      all_drivers.each do |driver|
-        found_driver = driver if driver.id == id
-      end
-      raise ArgumentError.new("No driver found") if found_driver == nil
-      return found_driver
+      self.all.find{ |driver| driver.id == id }
     end
-
   end
 end

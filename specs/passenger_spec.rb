@@ -29,15 +29,15 @@ describe "Passenger class" do
     end
   end
 
-  describe "get_all_prev_drivers method" do
+  describe "get_drivers method" do
     before do
-      @rider = RideShare::Passenger.new(id: 9, name: "Merl Glover III", phone_number: "1-602-620-2330 x3723")
+      @passenger = RideShare::Passenger.new(id: 9, name: "Merl Glover III", phone_number: "1-602-620-2330 x3723")
     end
     it "returns an array" do
-      @rider.get_all_prev_drivers.must_be_kind_of Array
+      @passenger.get_drivers.must_be_kind_of Array
     end
     it "all items in array are Driver instances" do
-      @rider.get_all_prev_drivers.each do |driver|
+      @passenger.get_drivers.each do |driver|
         driver.must_be_kind_of RideShare::Driver
       end
     end
@@ -54,34 +54,33 @@ describe "Passenger class" do
       end
     end
     it "grabs first line of data from csv" do
-      test_passenger = nil
+      # test_passenger = nil
       test_passenger = passengers.find {|pass| pass.id == 1}
       test_passenger.must_be_kind_of RideShare::Passenger
     end
     it "grabs last line of data from csv" do
-      test_passenger = nil
+      # test_passenger = nil
       test_passenger = passengers.find {|pass| pass.id == 300}
       test_passenger.name.must_equal "Miss Isom Gleason"
     end
     it "grabs random middle line of data from csv" do
-      test_passenger = nil
+      # test_passenger = nil
       test_passenger = passengers.find {|pass| pass.id == 153}
       test_passenger.phone_number.must_equal "1-227-712-3316 x290"
     end
   end
 
   describe "self.find(id) method" do
-    it "returns a RideShare::Passenger instance" do
+    it "returns a Passenger instance" do
       RideShare::Passenger.find(1).must_be_kind_of RideShare::Passenger
     end
-    it "RideShare::Passenger's id matches the id passed in" do
+    it "Passenger's id matches the id passed in" do
       id = 1
-      rider = RideShare::Passenger.find(id)
-      rider.id.must_equal id
+      passenger = RideShare::Passenger.find(id)
+      passenger.id.must_equal id
     end
-    it "raises an error if no RideShare::Passenger returned" do
-      proc {RideShare::Passenger.find(301)}.must_raise ArgumentError
+    it "returns nil if no Driver found" do
+      RideShare::Passenger.find(301).must_equal nil
     end
   end
-
 end

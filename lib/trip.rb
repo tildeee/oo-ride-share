@@ -43,7 +43,7 @@ module RideShare
     end
 
     def self.all
-      my_file = CSV.open("support/trips.csv")
+      my_file = CSV.open("support/trips.csv", headers: true)
       trips = []
       prng = Random.new
       my_file.each do |line|
