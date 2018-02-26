@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
-require_relative '../lib/trip'
-require_relative '../lib/driver'
-require_relative '../lib/passenger'
+# require_relative '../lib/trip'
+# require_relative '../lib/driver'
+# require_relative '../lib/passenger'
 
 describe "Trip class" do
 

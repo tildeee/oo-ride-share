@@ -1,5 +1,5 @@
 require_relative 'spec_helper'
-require_relative '../lib/driver'
+# require_relative '../lib/driver'
 
 describe "Driver class" do
 
