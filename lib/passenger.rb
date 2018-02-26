@@ -1,5 +1,5 @@
 module RideShare
-  class Rider
+  class Passenger
 
     def self.find(id)
       # stub for now
