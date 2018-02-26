@@ -37,8 +37,7 @@ module RideShare
 
         all_drivers << Driver.new(line[0].to_i, line[1], vin)
       end
-      # raise NoDataError.new("no data") if all_driver_info.empty?
-
+      
       return all_drivers
     end
 
