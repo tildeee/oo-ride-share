@@ -3,6 +3,8 @@ Remember the ride share exercise we did with designing and creating a system to 
 
 Now, we're going to use our understanding of classes, methods and attributes to create an object-oriented implementation of our ride share system.
 
+This is a [level 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) individual project.
+
 ## Learning Goals
 Reinforce and practice all of the Ruby and programming concepts we've covered in class so far:
 - Creating and instantiating classes with attributes
@@ -11,14 +13,14 @@ Reinforce and practice all of the Ruby and programming concepts we've covered in
 
 
 ## Context
-We have a code base that already pulls data from CSV files and turns them into the following objects:
+We have a code base that already pulls data from CSV files and turns them into collections of the following objects:
 - `Driver`s
 - `Passenger`s
 - `Trip`s
 
-All of this data is managed in a class `TripDispatcher`.
+All of this data is managed in a class called `TripDispatcher`. Our program will contain _one_ instance of `TripDispatcher`, which will load and manage the lists of `Driver`s, `Passenger`s and `Trip`s.
 
-We are going to continue making functionality that works with this data, such as finding the cost of a specific trip, or the total amount of money a passenger has spent, and also make functionality to create a new trip.
+We are going to continue making functionality that works with this data, such as finding the duration of a specific trip or the total amount of money a passenger has spent, and also make functionality to create a new trip.
 
 ### The Code So Far
 #### Driver
@@ -70,24 +72,23 @@ By the end of this project, a `TripDispatcher` will be able to:
 - create new trips with assigning appropriate passengers and drivers
 
 ## Getting Started
-This is a level 3, individual project.
 
 We will use the same project structure we used for the previous project. Classes should be in files in the `lib` folder, and tests should be in files in the `specs` folder. You will run tests by executing the `rake` command, as configured in a Rakefile.
 
 The `support` folder contains CSV files which will drive your system design. Each CSV corresponds to a different type of object _as well as_ creating a relationship between different objects.
 
-## Setup
+### Setup
 1. Fork this repository in GitHub
 1. Clone the repository to your computer
-1. Create/copy a Rakefile to run your tests
 1. Run `rake` to run the tests
 
 ### Process
-You should use the following process as much as possible:  
+You should use the following process as much as possible:
 
 1. Write pseudocode
 1. Write test(s)
 1. Write code
+1. Refactor
 
 ## Requirements
 
@@ -104,21 +105,24 @@ Create a diagram that describes how each of these classes and methods (messages)
 
 ### Wave 1
 
-When our program runs, it reads our CSV data. `TripDispatcher` reads and parses the CSV files in its `initialize` and populates instances of `Driver`s, `Passenger`s, and `Trip`s into our collections of `Driver`s, `Passenger`s, and `Trip`s.
+The purpose of Wave 1 is to help you become familiar with the existing code, and to practice working with enumerables.
 
-Now we want to enhance the trip functionality to include support for cost and duration.
+#### 1.1: Upgrading Dates
 
-- Update `TripDispatcher` so that it uses the file `support/trips-full.csv`
-- Update the `Trip` class so it has references that hold the new data provided in that CSV
-- Update the `TripDispatcher` class so it correctly makes `Trip` instances with the new information
-- Update the `Trip` class so it can retrieve the cost for the trip
-- Update the `Trip` class so it can calculate and retrieve the *duration* of the trip
+Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use [Ruby's built-in `DateTime` class](https://ruby-doc.org/stdlib/libdoc/date/rdoc/DateTime.html). You should:
 
-Now that we have data for cost available for every trip, we can do some interesting data processing.
+1. Spend some time reading the docs for `DateTime` - you might be particularly interested in `DateTime.parse`
+1. Modify `TripDispatcher#load_trips` to store the `start_time` and `end_time` as `DateTime`s
+1. Add an instance method to the `Trip` class to calculate the *duration* of the trip in seconds
 
-- For a given passenger, add the ability to return the total amount of money they have spent on all trips
-- For a given passenger, add the ability to return the total amount of time they have spent on their trips
-- For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
+#### 1.2: Aggregate Statistics
+
+Now that we have data for cost available for every trip, we can do some interesting data processing. Each of these should be implemented as an instance method on `Driver` or `Passenger`.
+
+1. Add an instance method to `Passenger` that will return the _total amount of money_ that passenger has spent on their trips
+1. Add an instance method to `Passenger` that will return the _total amount of time_ that passenger has spent on their trips
+1. Add an instance method to `Driver` to calculate that driver's _total revenue_ across all their trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
+1. Add an instance method to `Driver` to calculate that driver's _average revenue per hour_ spent driving, using the above formula for revenue
 
 **All of this code must have tests.**
 
