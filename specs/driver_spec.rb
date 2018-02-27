@@ -19,7 +19,7 @@ describe "Driver class" do
       @driver.trips.must_be_kind_of Array
       @driver.trips.length.must_equal 0
     end
-    
+
     it "is set up for specific attributes and data types" do
       [:id, :name, :vehicle_id, :status].each do |prop|
         @driver.must_respond_to prop
@@ -34,9 +34,9 @@ describe "Driver class" do
 
   describe "add trip method" do
     before do
-      @pass = RideShare::Passenger.new(id: 1, name: "Ada", phone: "412-432-7640")
+      pass = RideShare::Passenger.new(id: 1, name: "Ada", phone: "412-432-7640")
       @driver = RideShare::Driver.new(id: 3, name: "Lovelace", vin: "12345678912345678")
-      trip = RideShare::Trip.new({id: 8, driver: @driver, passenger: @pass, date: "2016-08-08", rating: 5})
+      @trip = RideShare::Trip.new({id: 8, driver: @driver, passenger: pass, date: "2016-08-08", rating: 5})
     end
 
     it "throws an argument error if trip is not provided" do
@@ -45,7 +45,7 @@ describe "Driver class" do
 
     it "increases the trip count by one" do
       previous = @driver.trips.length
-      @driver.add_trip(RideShare::Trip.new(id: 55, passenger: @pass, driver: @driver))
+      @driver.add_trip(@trip)
       @driver.trips.length.must_equal previous + 1
     end
   end
@@ -61,13 +61,9 @@ describe "Driver class" do
       @driver.average_rating.must_be_kind_of Float
     end
 
-    it "float is >= 1.0" do
+    it "float is with range of 1.0 to 5.0" do
       average = @driver.average_rating
       average.must_be :>=, 1.0
-    end
-
-    it "float is <= 5.0" do
-      average = @driver.average_rating
       average.must_be :<=, 5.0
     end
 
