@@ -79,8 +79,11 @@ describe "Passenger class" do
       passenger = RideShare::Passenger.find(id)
       passenger.id.must_equal id
     end
-    it "returns nil if no Driver found" do
+    it "returns nil if no Passenger found" do
       RideShare::Passenger.find(301).must_equal nil
+    end
+    it "throws an argument error if a bad ID is provided" do
+      proc{ RideShare::Passenger.find(0) }.must_raise ArgumentError
     end
   end
 end

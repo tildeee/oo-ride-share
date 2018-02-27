@@ -47,6 +47,10 @@ module RideShare
     end
 
     def self.find(id)
+      if id == nil || id <= 0
+        raise ArgumentError.new("ID cannot be blank or less than zero.")
+      end
+
       self.all.find{ |driver| driver.id == id }
     end
   end

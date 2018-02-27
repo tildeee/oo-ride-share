@@ -91,6 +91,9 @@ describe "Driver class" do
     it "returns nil if no Driver found" do
       RideShare::Driver.find(101).must_equal nil
     end
+    it "throws an argument error if a bad ID is provided" do
+      proc{ RideShare::Driver.find(0) }.must_raise ArgumentError
+    end
   end
 
 end

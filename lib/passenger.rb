@@ -40,10 +40,11 @@ module RideShare
     end
 
     def self.find(id)
-      # full_list = self.all
-      # p full_list
+      if id == nil || id <= 0
+        raise ArgumentError.new("ID cannot be blank or less than zero.")
+      end
+
       self.all.find { |pass| pass.id == id }
-      # self.all.find{ |pass| pass.id == id }
     end
   end
 end
