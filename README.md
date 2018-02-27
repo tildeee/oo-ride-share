@@ -25,36 +25,61 @@ We are going to continue making functionality that works with this data, such as
 ### The Code So Far
 #### Driver
 Each `Driver` has:
-- an ID, name, vehicle identification number, and a status indicating their availability
-  - Each vehicle identification number should be a specific length to ensure it is a valid vehicle identification number
-  - a driver's availability should be either `:available` or `:unavailable`
-- a list of trip instances that only this driver has taken
+
+**Attribute**|**Description**
+-----|-----
+id|The Driver's ID number
+name|The name of the Driver
+vehicle\_identification|The driver's Vehicle Identification Number (VIN Number), Each vehicle identification number should be a specific length to ensure it is a valid vehicle identification number
+status|Indicating availability, a driver's availability should be either `:available` or `:unavailable`
 
 Each `Driver` instance is able to:
-- retrieve an average rating for that driver based on all trips taken
+
+**Method**|**Description**
+-----|-----
+average_rating  |  retrieve an average rating for that driver based on all trips taken
 
 #### Passenger
 Each `Passenger` has:
-- an ID, name and phone number
-- a list of trip instances that only this passenger has taken
+
+**Attribute**|**Description**
+-----|-----
+id|The Driver's ID number
+name|The name of the Driver
+Phone Number|The Passenger's Phone Number which must be in phone number format (XXX) XXX-XXXX
+trips|A list of trips that only this passenger has taken
 
 Each `Passenger` instance is able to:
-- retrieve the list of all previous driver instances associated with trips this passenger has taken
+
+**Method**|**Description**
+-----|-----
+get_drivers  |  retrieve the list of all previous driver instances associated with trips this passenger has taken
 
 #### Trip
 Each `Trip` has:
-- an ID, a passenger, a driver, and a rating
-  - Each rating should be within an acceptable range (1-5)
+
+**Attribute**|**Description**
+-----|-----
+id|The Driver's ID number
+passenger|The passenger on the trip
+driver|The driver for the trip
+rating|The rating given by the passenger, a number 1-5
 
 Each `Trip` instance is able to:
-- retrieve the associated driver instance
-- retrieve the associated passenger instance
+
+**Method**|**Description**
+-----|-----
+driver  |  retrieve the associated driver instance
+passenger  |  retrieve the associated passenger instance
 
 #### TripDispatcher
 The `TripDispatcher` has:
-- a collection of `Driver`s
-- a collection of `Passenger`s
-- a collection of `Trip`s
+
+**Attribute**|**Description**
+-----|-----
+drivers|A list of all drivers in the system|a collection of Driver instances
+passengers|A list of all passengers in the system|a collection of Passenger instances
+trips|A list of all trips taken in the system|a collection of Trip instances
 
 The `TripDispatcher` has the following responsibilities:
 - load collections of `Driver`s, `Passenger`s, and `Trip`s from CSV files
@@ -64,9 +89,12 @@ The `TripDispatcher` does the following:
 - on instantiation, loads and creates `Trip`s, `Passenger`s, and `Driver`s and stores them into collections
 
 The `TripDispatcher` instance is able to:
-- retrieve the collection of `Trip`s, `Passenger`s, and `Driver`s
-- find an instance of `Driver` given an ID
-- find an instance of `Passenger` given an ID
+
+**Methods**|**Description**
+-----|-----
+drivers, passengers, trips  |  retrieve the collection of `Trip`s, `Passenger`s, and `Driver`s
+find_driver  |  find an instance of `Driver` given an ID
+find_passenger  |  find an instance of `Passenger` given an ID
 
 By the end of this project, a `TripDispatcher` will be able to:
 - create new trips with assigning appropriate passengers and drivers
@@ -112,7 +140,7 @@ The purpose of Wave 1 is to help you become familiar with the existing code, and
 Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use Ruby's built-in `Time` class. You should:
 
 1. Spend some time reading the docs for `Time` - you might be particularly interested in `Time.parse`
-1. Modify `TripDispatcher#load_trips` to store the `start_time` and `end_time` as `Time`s
+1. Modify `TripDispatcher#load_trips` to store the `start_time` and `end_time` as `Time` instances
 1. Add a check in `Trip#initialize` that raises an `ArgumentError` if the end time is before the start time, and a corresponding test
 1. Add an instance method to the `Trip` class to calculate the _duration_ of the trip in seconds, and a corresponding test
 
