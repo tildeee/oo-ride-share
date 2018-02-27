@@ -109,11 +109,14 @@ The purpose of Wave 1 is to help you become familiar with the existing code, and
 
 #### 1.1: Upgrading Dates
 
-Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use [Ruby's built-in `DateTime` class](https://ruby-doc.org/stdlib/libdoc/date/rdoc/DateTime.html). You should:
+Currently our implementation saves the start and end time of each trip as a string. This is our first target for improvement. Instead of storing these values as strings, we will use Ruby's built-in `Time` class. You should:
 
-1. Spend some time reading the docs for `DateTime` - you might be particularly interested in `DateTime.parse`
-1. Modify `TripDispatcher#load_trips` to store the `start_time` and `end_time` as `DateTime`s
-1. Add an instance method to the `Trip` class to calculate the *duration* of the trip in seconds
+1. Spend some time reading the docs for `Time` - you might be particularly interested in `Time.parse`
+1. Modify `TripDispatcher#load_trips` to store the `start_time` and `end_time` as `Time`s
+1. Add a check in `Trip#initialize` that raises an `ArgumentError` if the end time is before the start time, and a corresponding test
+1. Add an instance method to the `Trip` class to calculate the _duration_ of the trip in seconds, and a corresponding test
+
+**Hint:** If you're hitting a `NoMethodError` for `Time.parse`, be aware that you need to `require 'time'` in order for it to work. This is a weird quirk of how the library is designed.
 
 #### 1.2: Aggregate Statistics
 
@@ -124,7 +127,7 @@ Now that we have data for cost available for every trip, we can do some interest
 1. Add an instance method to `Driver` to calculate that driver's _total revenue_ across all their trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
 1. Add an instance method to `Driver` to calculate that driver's _average revenue per hour_ spent driving, using the above formula for revenue
 
-**All of this code must have tests.**
+**All of these methods must have tests.**
 
 ### Wave 2
 
