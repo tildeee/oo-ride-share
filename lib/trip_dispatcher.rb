@@ -31,6 +31,7 @@ module RideShare
         input_data[:vin] = vin
         input_data[:id] = line[0].to_i
         input_data[:name] = line[1]
+        input_data[:status] = status
         all_drivers << Driver.new(input_data)
       end
 

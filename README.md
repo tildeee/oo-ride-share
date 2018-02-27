@@ -31,7 +31,7 @@ Each `Driver` has:
 id|The Driver's ID number
 name|The name of the Driver
 vehicle\_identification|The driver's Vehicle Identification Number (VIN Number), Each vehicle identification number should be a specific length to ensure it is a valid vehicle identification number
-status|Indicating availability, a driver's availability should be either `:available` or `:unavailable`
+status|Indicating availability, a driver's availability should be either `:AVAILABLE` or `:UNAVAILABLE`
 
 Each `Driver` instance is able to:
 
@@ -164,7 +164,7 @@ Our program needs a way to make new trips and appropriately assign a driver and 
 This logic will be handled by our `TripDispatcher` in a new instance method: `TripDispatcher#request_trip(passenger_id)`. When we create a new trip with this method, the following will be true:
 - The passenger ID will be supplied (this is the person requesting a trip)
 - Your code should automatically assign a driver to the trip
-  - For this initial version, choose the first driver whose status is `AVAILABLE`
+  - For this initial version, choose the first driver whose status is `:AVAILABLE`
 - Your code should use the current time for the start time
 - The end date, cost and rating will all be `nil`
   - The trip hasn't finished yet!
@@ -174,7 +174,7 @@ You should use this information to:
 - Create a new instance of `Trip`
 - Modify this selected driver using a new helper method in `Driver`:
   - Add the new trip to the collection of trips for that `Driver`
-  - Set the driver's status to `UNAVAILABLE`
+  - Set the driver's status to `:UNAVAILABLE`
 - Modify the passenger for the trip using a new helper method in `Passenger`:
   - Add the new trip to the collection of trips for the `Passenger`
 - Add the new trip to the collection of all `Trip`s in `TripDispatcher`
