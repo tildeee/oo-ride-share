@@ -16,7 +16,8 @@ describe "Driver class" do
     end
 
     it "throws an argument error with a bad VIN value" do
-      proc{ RideShare::Driver.new(id: 0, name: "George", vin: "")}.must_raise ArgumentError
+      proc{ RideShare::Driver.new(id: 100, name: "George", vin: "")}.must_raise ArgumentError
+      proc{ RideShare::Driver.new(id: 100, name: "George", vin: "33133313331333133extranums")}.must_raise ArgumentError
     end
 
     it "sets trips to an empty array if not provided" do
