@@ -25,6 +25,7 @@ We are going to continue making functionality that works with this data, such as
 ### The Code So Far
 #### Driver
 Each `Driver` has:
+
 **Attribute**|**Description**
 -----|-----
 id|The Driver's ID number
@@ -33,12 +34,14 @@ vehicle\_identification|The driver's Vehicle Identification Number (VIN Number),
 status|Indicating availability, a driver's availability should be either `:available` or `:unavailable`
 
 Each `Driver` instance is able to:
+
 **Method**|**Description**
 -----|-----
 average_rating  |  retrieve an average rating for that driver based on all trips taken
 
 #### Passenger
 Each `Passenger` has:
+
 **Attribute**|**Description**
 -----|-----
 id|The Driver's ID number
@@ -47,12 +50,14 @@ Phone Number|The Passenger's Phone Number which must be in phone number format (
 trips|A list of trips that only this passenger has taken
 
 Each `Passenger` instance is able to:
+
 **Method**|**Description**
 -----|-----
 get_drivers  |  retrieve the list of all previous driver instances associated with trips this passenger has taken
 
 #### Trip
 Each `Trip` has:
+
 **Attribute**|**Description**
 -----|-----
 id|The Driver's ID number
@@ -61,6 +66,7 @@ driver|The driver for the trip
 rating|The rating given by the passenger, a number 1-5
 
 Each `Trip` instance is able to:
+
 **Method**|**Description**
 -----|-----
 driver  |  retrieve the associated driver instance
@@ -68,6 +74,7 @@ passenger  |  retrieve the associated passenger instance
 
 #### TripDispatcher
 The `TripDispatcher` has:
+
 **Attribute**|**Description**
 -----|-----
 drivers|A list of all drivers in the system|a collection of Driver instances
@@ -82,6 +89,7 @@ The `TripDispatcher` does the following:
 - on instantiation, loads and creates `Trip`s, `Passenger`s, and `Driver`s and stores them into collections
 
 The `TripDispatcher` instance is able to:
+
 **Methods**|**Description**
 -----|-----
 drivers, passengers, trips  |  retrieve the collection of `Trip`s, `Passenger`s, and `Driver`s
