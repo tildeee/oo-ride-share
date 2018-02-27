@@ -7,20 +7,20 @@ describe "Passenger class" do
     test_rider.must_be_kind_of RideShare::Passenger
   end
 
-  describe "get_trips method" do
+  describe "trips property" do
     before do
-      @rider = RideShare::Passenger.new(id: 9, name: "Merl Glover III", phone_number: "1-602-620-2330 x3723")
+      @passenger = RideShare::Passenger.new(id: 9, name: "Merl Glover III", phone_number: "1-602-620-2330 x3723", trips: [])
     end
     it "returns an array of trips" do
-      @rider.get_trips.must_be_kind_of Array
+      @passenger.trips.must_be_kind_of Array
     end
     it "each item in array is a Trip instance" do
-      @rider.get_trips.each do |trip|
+      @passenger.trips.each do |trip|
         trip.must_be_kind_of RideShare::Trip
       end
     end
     it "all Trips must have the same RideShare::Passenger id" do
-      @rider.get_trips.each do |trip|
+      @passenger.trips.each do |trip|
         trip.passenger_id.must_equal 9
       end
     end
@@ -28,6 +28,7 @@ describe "Passenger class" do
 
   describe "get_drivers method" do
     before do
+      trips = [RideShare::Trip.new(id: 1, )]
       @passenger = RideShare::Passenger.new(id: 9, name: "Merl Glover III", phone_number: "1-602-620-2330 x3723")
     end
     it "returns an array" do

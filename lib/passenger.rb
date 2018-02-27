@@ -2,7 +2,7 @@ require_relative 'trip'
 
 module RideShare
   class Passenger
-    attr_reader :id, :name, :phone_number
+    attr_reader :id, :name, :phone_number, :trips
 
     def initialize(input)
       if input[:id] == nil || input[:id] <= 0
@@ -12,16 +12,15 @@ module RideShare
       @id = input[:id]
       @name = input[:name]
       @phone_number = input[:phone]
-    end
-
-    def get_trips
-      return Trip.all_for_passenger(@id)
+      @trips = input[:trips] == nil ? [] : input[:trips]
     end
 
     def get_drivers
-      trips = get_trips
-      drivers = trips.map{ |t| t.get_driver }
-      return drivers
+      @trips.map{ |t| t.driver }
+    end
+
+    def add_trip(trip)
+      @trips << trip
     end
   end
 end
