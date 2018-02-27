@@ -6,83 +6,84 @@ Now, we're going to use our understanding of classes, methods and attributes to 
 ## Learning Goals
 Reinforce and practice all of the Ruby and programming concepts we've covered in class so far:
 - Creating and instantiating classes with attributes
-- Creating class and instance methods within our classes
+- Creating class methods and instance methods within our classes
 - Writing pseudocode and creating tests to drive the creation of our code
-- Importing data from a CSV file
 
-## Primary Requirements
-Create a system that will manage information related to ride sharing. The system should have a way to keep track of drivers, passengers and the trips that the drivers take with their passengers.
 
+## Context
+We have some a code base that already pulls data from CSV files and turns them into the following objects:
+- `Driver`s
+- `Passenger`s
+- `Trip`s
+
+We are going to continue making functionality that works with this data, such as finding the cost of a specific trip, or the total amount of money a passenger has spent.
+
+### The Code So Far
 #### Driver
-Each driver should:
-- have an ID, name, and vehicle identification number
+Each `Driver` has:
+- an ID, name, and vehicle identification number
   - Each vehicle identification number should be a specific length to ensure it is a valid vehicle identification number
+- a list of trip instances that only this driver has taken
 
-Given a driver object, you should be able to:
-- retrieve the list of trip instances that only this driver has taken
+Each `Driver` instance is able to:
 - retrieve an average rating for that driver based on all trips taken
 
 You should be able to:
-- retrieve all drivers from the CSV file
 - find a specific driver using their numeric ID
 
 #### Passenger
-Each passenger should:
-- have an ID, name and phone number
+Each `Passenger` has:
+- an ID, name and phone number
+- a list of trip instances that only this passenger has taken
 
-Given a passenger object, you should be able to:
-- retrieve the list of trip instances that only this passenger has taken
-- retrieve the list of all previous driver instances (through the trips functionality built above)
+Each `Passenger` instance is able to:
+- retrieve the list of all previous driver instances associated with trips this passenger has taken
 
 You should be able to:
-- retrieve all passengers from the CSV file
 - find a specific passenger using their numeric ID
 
 #### Trip
-Each trip should:
-- have an ID, passenger ID, a driver ID, date, rating
--   Each rating should be within an acceptable range (1-5)
+Each `Trip` has:
+- an ID, passenger, a driver, date, rating
+  - Each rating should be within an acceptable range (1-5)
 
-Given a trip object, you should be able to:
+Each `Trip` instance is able to:
 - retrieve the associated driver instance through the driver ID
 - retrieve the associated passenger instance through the passenger ID
 
-You should be able to:
-- find all trip instances for a given driver ID
-- find all trip instances for a given passenger ID
-- retrieve all trips from the CSV file
+#### TripDispatcher
+The `TripDispatcher` has:
+- a collection of `Driver`s
+- a collection of `Passenger`s
+- a collection of `Trip`s
+
+The `TripDispatcher` has the following responsibilities:
+- load collections of `Driver`s, `Passenger`s, and `Trip`s from CSV files
+- store and manage this data into separate collections
+
+The `TripDispatcher` does the following:
+- on instantiation, loads and creates `Trip`s, `Passenger`s, and `Driver`s and stores them into collections
+
+The `TripDispatcher` instance is able to:
+- retrieve the collection of `Trip`s, `Passenger`s, and `Driver`s
+- find an instance of `Driver` given an ID
+- find an instance of `Passenger` given an ID
+
+By the end of this project, a `TripDispatcher` will be able to:
+- create new trips with assigning appropriate passengers and drivers
 
 ## Getting Started
 This is a level 3, individual project.
 
-We will use the same project structure we used for the previous project. Classes should be in files in the `lib` folder, and tests should be in files in the `specs` folder. You should utilize a spec helper file. You will run tests by executing the `rake` command, as configured in a Rakefile. You should have **95% code coverage** using simplecov.
+We will use the same project structure we used for the previous project. Classes should be in files in the `lib` folder, and tests should be in files in the `specs` folder. You will run tests by executing the `rake` command, as configured in a Rakefile.
 
 The `support` folder contains CSV files which will drive your system design. Each CSV corresponds to a different type of object _as well as_ creating a relationship between different objects.
 
-## Baseline
-### Discussion
-#### Phase 1
-Let's start by **individually** creating the list of nouns and verbs that you would utilize to describe this problem.
-
-After a few minutes, then you'll get together with your seat squad to discuss the nouns and verbs you came up with.
-
-#### Phase 2
-Use your list of nouns to begin thinking about what classes you will want to use. Use your list of verbs associated with nouns to consider what methods you need to put in which classes.
-
-After a few minutes, then you'll get together with your seat squad to discuss the classes and methods you came up with.
-
-#### Phase 3
-Create a diagram that describes how each of these classes and methods (messages) will interact with one another as well as the CSV files.
-
-### Setup
+## Setup
 1. Fork this repository in GitHub
 1. Clone the repository to your computer
-1. Create/copy a rakefile to run your tests
-1. Open the `specs/spec_helper.rb` file to load your classes and start up simple coverage.  This file will load all the required gems and source files your spec files need so they only need to require the helper.  
-  - Each of your spec files should `require_relative` the spec helper file.
-1. Create a test to check the instantiation of one of your object types (**RED**)
-1. Create the class for the object tested in the step above (**GREEN**)
-1. Use git add, commit and push commands to push your initial code to GitHub
+1. Create/copy a Rakefile to run your tests
+1. Run `rake` to run the tests
 
 ### Process
 You should use the following process as much as possible:  
@@ -91,12 +92,75 @@ You should use the following process as much as possible:
 1. Write test(s)
 1. Write code
 
-Since this is the **last** Ruby-only project we are doing, and a level 3, the requirements are larger than previous projects. It is possible you will not be able to complete all requirements, but if you use the process above, you will still be able to share with your instructors the process and the design you have created.
+## Requirements
 
-### Optional Requirements
-- The first optional should always be looking for improvements within the existing code you have already written. Are there any additional edge cases you might be missing in your tests? Any opportunity to use an enumerable method where you're using an each?
-- Enhance the trip functionality to include support for cost and duration
-  - Update your CSV file accordingly
+### Baseline
+
+To start this project, take some time to get familiar with the code. Do the following in this order:
+1. Read through all of the tests
+1. Look at the provided CSV files: `support/drivers.csv`, `support/passengers.csv`, `support/trips.csv`
+1. Then look through the ruby files in the `lib` folder
+
+Create a diagram that describes how each of these classes and methods (messages) interact with one another as well as with the CSV files.
+
+Look for improvements within the existing code. Are there any additional edge cases you might be missing in your tests? Any opportunity to use an enumerable method where the code is using an each?
+
+- Add any more tests that you think you need
+- Refactor any code you would like to refactor
+- Make sure the tests are passing before you move on
+
+### Wave 1
+
+When our program runs, it reads our CSV data. `TripDispatcher` reads and parses the CSV files in its `initialize` and populates instances of `Driver`s, `Passenger`s, and `Trip`s into our collections of `Driver`s, `Passenger`s, and `Trip`s.
+
+Now we want to enhance the trip functionality to include support for cost and duration.
+
+- Update `TripDispatcher` so that it uses the file `support/trips-full.csv`
+- Update the `Trip` class so it has references that hold the new data provided in that CSV
+- Update the `TripDispatcher` class so it correctly makes `Trip` instances with the new information
+- Update the `Trip` class so it can retrieve the cost for the trip
+- Update the `Trip` class so it can calculate and retrieve the duration of the trip
+
+**All of this code must have tests.**
+
+#### Optional Requirements
+
+Now that we have data for cost available for every trip, we can do some interesting data processing.
+
 - For a given passenger, add the ability to return the total amount of money they have spent on all trips
 - For a given passenger, add the ability to return the total amount of time they have spent on their trips
 - For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
+
+### Wave 2
+
+Our program needs a way to make new trips and appropriately assign a driver and passenger.
+
+Let's look at our `TripDispatcher`. Add functionality in `TripDispatcher` so it can make new trips with passengers and drivers.
+- Create a new method in `TripDispatcher` whose responsibility is to make a new trip. This method should:
+  - randomly find a `Driver` to associate with this new trip
+  - modify the collection of `Trip`s in that specific driver using a new helper method in `Driver`
+  - randomly find a `Passenger` to associate with this new trip
+  - modify the collection of `Trip`s in that specific passenger using a new helper method in `Passenger`
+  - modify the collection of `Trip`s in `TripDispatcher`
+
+**All of this code must have tests.**
+
+### Wave 3
+
+We have a new dataset available to us! The new dataset provides initial statuses for drivers and passengers that represents their availability to be added to a new ride. `:available` means that a driver or passenger is available to be assigned to a new trip, and `:unavailable` means that they are not.
+
+Refactor the code in the following ways. Starting with `TripDispatcher`:
+1. Tell `TripDispatcher` to populate the collection of `Driver`s from the file `support/drivers-full.csv`
+1. Tell `TripDispatcher` to populate the collection of `Passenger`s from the file `support/passengers-full.csv`
+1. When creating new instances of `Driver`, now pass in the value for a `status` attribute
+1. When creating new instances of `Passenger`, now pass in the value for a `status` attribute
+
+Now modify `Driver` and `Passenger` to use this new information:
+1. Modify the `Driver` class so it has a references that hold the new data provided
+1. Modify the `Passenger` class so it has a references that hold the new data provided
+
+Now refactor the tests and code in `TripDispatcher` to adjust the logic for creating trips
+- A new trip can only have an assigned driver whose status is `:available`
+- A new trip can only have an assigned passenger whose status is `:available`
+
+**All of this code must have tests.**
