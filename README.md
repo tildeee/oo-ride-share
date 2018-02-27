@@ -31,6 +31,7 @@ Each `Driver` has:
 id|The Driver's ID number
 name|The name of the Driver
 vehicle\_identification|The driver's Vehicle Identification Number (VIN Number), Each vehicle identification number should be a specific length to ensure it is a valid vehicle identification number
+trips | A list of trips the driver has gone on.
 status|Indicating availability, a driver's availability should be either `:AVAILABLE` or `:UNAVAILABLE`
 
 Each `Driver` instance is able to:
