@@ -64,6 +64,7 @@ module RideShare
 
     def load_trips
       trip_data = CSV.open('support/trips.csv', 'r', headers: true, header_converters: :symbol)
+
       return trip_data.map do |raw_trip|
         parsed_trip = {
           id: raw_trip[:id].to_i,

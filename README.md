@@ -133,20 +133,34 @@ Now that we have data for cost available for every trip, we can do some interest
 
 Our program needs a way to make new trips and appropriately assign a driver and passenger.
 
-Let's look at our `TripDispatcher`. Add functionality in `TripDispatcher` so it can make new trips with passengers and drivers.
-- Create a new method in `TripDispatcher` whose responsibility is to make a new trip. This method should:
-  - take in as a parameter the ID of a passenger to associate with this new trip
-  - use the first existing instance `Driver` whose status is available as a driver to associate with this new trip
-  - make a new instance of `Trip`
-    - The start date of this trip is the current time
-    - The end date of this trip is `nil`
-  - modify this specific driver using a new helper method in `Driver`
-    - modify the collection of `Trip`s in that specific driver
-    - set this driver's status to unavailable
-  - modify the collection of `Trip`s in that specific passenger using a new helper method in `Passenger`
-  - modify the collection of `Trip`s in `TripDispatcher`
+This logic will be handled by our `TripDispatcher` in a new instance method: `TripDispatcher#request_trip(passenger_id)`. When we create a new trip with this method, the following will be true:
+- The passenger ID will be supplied (this is the person requesting a trip)
+- Your code should automatically assign a driver to the trip
+  - For this initial version, choose the first driver whose status is `AVAILABLE`
+- Your code should use the current time for the start time
+- The end date, cost and rating will all be `nil`
+  - The trip hasn't finished yet!
+
+You should use this information to:
+
+- Create a new instance of `Trip`
+- Modify this selected driver using a new helper method in `Driver`:
+  - Add the new trip to the collection of trips for that `Driver`
+  - Set the driver's status to `UNAVAILABLE`
+- Modify the passenger for the trip using a new helper method in `Passenger`:
+  - Add the new trip to the collection of trips for the `Passenger`
+- Add the new trip to the collection of all `Trip`s in `TripDispatcher`
+- Return the newly created trip
 
 **All of this code must have tests.**
+
+#### Interaction with Wave 1
+
+One thing you may notice is that this change breaks your code from Wave 1, possibly in subtle ways. We've added a new kind of trip, an _in-progress_ trip, that is missing some of the values you need to compute those numbers.
+
+Your code from wave 1 should _ignore_ any in-progress trips. That is to say, any trip where the end time is `nil` should not be included in your totals.
+
+You should also add explicit tests for this new situation. For example, what happens if you attempt to calculate the total money spent for a `Passenger` with an in-progress trip, or the average hourly revenue of a `Driver` with an in-progress trip?
 
 ### Wave 3
 
