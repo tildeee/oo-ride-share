@@ -17,6 +17,8 @@ Complete tests |
 creating a trip in `TripDispatcher` relies on methods in `Driver` and `Passenger` to modify their own attributes |
 Complete tests |
 **Wave 3** |
-`TripDispatcher`'s creating a trip method checks status of driver |
+Complex logic was correctly implemented and tested | 
+Appropriate use of Ruby's `Date` |
+Appropriate helper methods were made to help with complex logic |
 Complete tests |
 **Overall** |

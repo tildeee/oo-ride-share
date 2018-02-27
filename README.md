@@ -135,11 +135,13 @@ Our program needs a way to make new trips and appropriately assign a driver and 
 Let's look at our `TripDispatcher`. Add functionality in `TripDispatcher` so it can make new trips with passengers and drivers.
 - Create a new method in `TripDispatcher` whose responsibility is to make a new trip. This method should:
   - take in as a parameter the ID of a passenger to associate with this new trip
-  - randomly find a `Driver` to associate with this new trip
+  - use the first existing instance `Driver` whose status is available as a driver to associate with this new trip
   - make a new instance of `Trip`
     - The start date of this trip is the current time
     - The end date of this trip is `nil`
-  - modify the collection of `Trip`s in that specific driver using a new helper method in `Driver`
+  - modify this specific driver using a new helper method in `Driver`
+    - modify the collection of `Trip`s in that specific driver
+    - set this driver's status to unavailable
   - modify the collection of `Trip`s in that specific passenger using a new helper method in `Passenger`
   - modify the collection of `Trip`s in `TripDispatcher`
 
@@ -147,15 +149,23 @@ Let's look at our `TripDispatcher`. Add functionality in `TripDispatcher` so it 
 
 ### Wave 3
 
-Refactor the code in the following ways. Starting with `TripDispatcher`:
-1. Tell `TripDispatcher` to populate the collection of `Driver`s from the file `support/drivers-full.csv`
-1. When creating new instances of `Driver`, now pass in the value for a `status` attribute
+We want to evolve `TripDispatcher` so it assigns drivers in more intelligent ways. Every time we make a new trip, we want to pick drivers who haven't completed a trip in a long time.
 
-Now modify `Driver` to use this new information:
-1. Modify the `Driver` class so it has references that hold the new data provided
+In other words, we should assign the driver to **the available driver whose most recent trip ending is the oldest compared to today.**
 
-Now refactor the tests and code in `TripDispatcher` to adjust the logic for creating trips
-- A new trip can only have an assigned driver whose status is `:available`
-- This should change the driver's status to `:unavailable`
+Refactor creating a trip in `TripDispatcher` with the following rule:
+- A new trip can only have a driver who
+  - has a status of available
+- Of those eligible drivers, pick the _one_ driver with the following rules:
+  - compare each available driver's trips that meets the following requirements:
+    - the trip's *end date* is not `nil`
+    - the end date is the closest to today's current date compared to the other trips the driver has made
+    - _Ex:_ Consider the following trips: a trip with end date of Jan 1 2018, a trip with end date of Jan 2 2018, and a trip with end date of `nil`. The trip closest to today's current date compared to others is the trip with end date of Jan 2 2018
+  - compare those trips with each other. From those trips, pick the trip whose end date is the farthest from today's current date compared to the other trips
+    - _Ex:_ Consider the following trips: a trip with end date of Jan 1 2018 and a trip with end date of Jan 2 2018. The trip farthest from today's current date compared to others is the trip with the end date of Jan 1 2018
+  - pick the driver associated with that trip
 
 **All of this code must have tests.**
+
+## What Instructors Are Looking For
+Check out the [feedback template](feedback.md) which lists the items instructors will be looking for as they evaluate your project.
