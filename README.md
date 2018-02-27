@@ -100,11 +100,7 @@ To start this project, take some time to get familiar with the code. Do the foll
 
 Create a diagram that describes how each of these classes and methods (messages) interact with one another as well as with the CSV files.
 
-Look for improvements within the existing code. Are there any additional edge cases you might be missing in your tests? Any opportunity to use an enumerable method where the code is using an each?
-
-- Add any more tests that you think you need
-- Refactor any code you would like to refactor
-- Make sure the tests are passing before you move on
+**Exercise:** Look at this requirement in Wave 1: "For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost after a fee of $1.65 is subtracted." Spend some time writing pseudocode for this.
 
 ### Wave 1
 
@@ -125,8 +121,6 @@ Now that we have data for cost available for every trip, we can do some interest
 - For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
 
 **All of this code must have tests.**
-
-**Exercise:** Look at this requirement in Wave 1: "For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost after a fee of $1.65 is subtracted." Spend some time writing pseudocode for this.
 
 ### Wave 2
 
