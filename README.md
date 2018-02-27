@@ -152,7 +152,11 @@ You should use this information to:
 - Add the new trip to the collection of all `Trip`s in `TripDispatcher`
 - Return the newly created trip
 
-**All of this code must have tests.**
+**All of this code must have tests.** Things to pay attention to:
+- Was the trip created properly?
+- Were the trip lists for the driver and passenger updated?
+- Was the driver who was selected `AVAILABLE`?
+- What happens if you try to request a trip when there are no `AVAILABLE` drivers?
 
 #### Interaction with Wave 1
 
