@@ -58,8 +58,10 @@ describe "TripDispatcher class" do
 
       first_driver.name.must_equal "Bernardo Prosacco"
       first_driver.id.must_equal 1
+      first_driver.status.must_equal :UNAVAILABLE
       last_driver.name.must_equal "Minnie Dach"
       last_driver.id.must_equal 100
+      last_driver.status.must_equal :AVAILABLE
     end
 
     it "accurately loads passenger information into passengers array" do
