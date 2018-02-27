@@ -14,7 +14,7 @@ module RideShare
       @rating = input[:rating]
 
       if @rating > 5 || @rating < 1
-        raise ArguementError.new("Invalid rating #{@rating}")
+        raise ArgumentError.new("Invalid rating #{@rating}")
       end
     end
   end
