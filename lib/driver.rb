@@ -5,7 +5,7 @@ module RideShare
   class Driver
     attr_reader :id, :name, :vehicle_id
 
-    def initialize(id, name, vin)
+    def initialize(id, name, vin, status)
       if id == nil || id <= 0
         raise ArgumentError.new("ID cannot be blank or less than zero. (got #{id})")
       end
@@ -13,6 +13,7 @@ module RideShare
       @id = id
       @name = name
       @vehicle_id = vin
+      @status = status
     end
 
     def get_trips
