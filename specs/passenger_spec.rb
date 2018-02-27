@@ -42,48 +42,4 @@ describe "Passenger class" do
       end
     end
   end
-
-  describe "self.all method" do
-    let(:passengers) {RideShare::Passenger.all}
-    it "returns an array" do
-      passengers.must_be_kind_of Array
-    end
-    it "all elements are RideShare::Passenger instances" do
-      passengers.each do |passenger|
-        passenger.must_be_kind_of RideShare::Passenger
-      end
-    end
-    it "grabs first line of data from csv" do
-      # test_passenger = nil
-      test_passenger = passengers.find {|pass| pass.id == 1}
-      test_passenger.must_be_kind_of RideShare::Passenger
-    end
-    it "grabs last line of data from csv" do
-      # test_passenger = nil
-      test_passenger = passengers.find {|pass| pass.id == 300}
-      test_passenger.name.must_equal "Miss Isom Gleason"
-    end
-    it "grabs random middle line of data from csv" do
-      # test_passenger = nil
-      test_passenger = passengers.find {|pass| pass.id == 153}
-      test_passenger.phone_number.must_equal "1-227-712-3316 x290"
-    end
-  end
-
-  describe "self.find(id) method" do
-    it "returns a Passenger instance" do
-      RideShare::Passenger.find(1).must_be_kind_of RideShare::Passenger
-    end
-    it "Passenger's id matches the id passed in" do
-      id = 1
-      passenger = RideShare::Passenger.find(id)
-      passenger.id.must_equal id
-    end
-    it "returns nil if no Passenger found" do
-      RideShare::Passenger.find(301).must_equal nil
-    end
-    it "throws an argument error if a bad ID is provided" do
-      proc{ RideShare::Passenger.find(0) }.must_raise ArgumentError
-    end
-  end
 end

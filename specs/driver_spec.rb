@@ -51,49 +51,4 @@ describe "Driver class" do
       average.must_be :<=, 5.0
     end
   end
-
-  describe "self.all method" do
-    let(:all_drivers) {RideShare::Driver.all}
-    it "returns an array" do
-      all_drivers.must_be_kind_of Array
-    end
-    it "all elements are RideShare::Driver instances" do
-      all_drivers.each do |driver|
-        driver.must_be_kind_of RideShare::Driver
-      end
-    end
-    it "grabs first line of data from csv" do
-      test_driver = nil
-      test_driver = all_drivers.find {|driver| driver.id == 1}
-      test_driver.must_be_kind_of RideShare::Driver
-    end
-    it "grabs last line of data from csv" do
-      test_driver = nil
-      test_driver = all_drivers.find {|driver| driver.id == 100}
-      test_driver.name.must_equal "Minnie Dach"
-    end
-    it "grabs random middle line of data from csv" do
-      test_driver = nil
-      test_driver = all_drivers.find {|driver| driver.id == 60}
-      test_driver.vehicle_id.must_equal "TAMCBRPM7EN5GD88L"
-    end
-  end
-
-  describe "self.find(id) method" do
-    it "returns a RideShare::Driver instance" do
-      RideShare::Driver.find(1).must_be_kind_of RideShare::Driver
-    end
-    it "RideShare::Driver's id matches the id passed in" do
-      id = 1
-      driver = RideShare::Driver.find(id)
-      driver.id.must_equal id
-    end
-    it "returns nil if no Driver found" do
-      RideShare::Driver.find(101).must_equal nil
-    end
-    it "throws an argument error if a bad ID is provided" do
-      proc{ RideShare::Driver.find(0) }.must_raise ArgumentError
-    end
-  end
-
 end
