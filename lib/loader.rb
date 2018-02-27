@@ -14,7 +14,15 @@ module RideShare
         # Set to a default value
         vin = line[2].length == 17 ? line[2] : "0" * 17
 
-        all_drivers << Driver.new(line[0].to_i, line[1], vin)
+        status = line[3]
+        case status
+        when "AVAILABLE"
+          status = :available
+        when "UNAVAILABLE"
+          status = :unavailable
+        end
+
+        all_drivers << Driver.new(line[0].to_i, line[1], vin, status)
       end
 
       return all_drivers

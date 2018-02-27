@@ -13,6 +13,7 @@ module RideShare
       @id = input[:id]
       @name = input[:name]
       @vehicle_id = input[:vin]
+      @status = input[:status]
 
       @trips = input[:trips] == nil ? [] : input[:trips]
     end
