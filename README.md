@@ -172,17 +172,22 @@ We want to evolve `TripDispatcher` so it assigns drivers in more intelligent way
 
 In other words, we should assign the driver to **the available driver whose most recent trip ending is the oldest compared to today.**
 
-Refactor creating a trip in `TripDispatcher` with the following rule:
-- A new trip can only have a driver who
-  - has a status of available
-- Of those eligible drivers, pick the _one_ driver with the following rules:
-  - compare each available driver's trips that meets the following requirements:
-    - the trip's *end date* is not `nil`
-    - the end date is the closest to today's current date compared to the other trips the driver has made
-    - _Ex:_ Consider the following trips: a trip with end date of Jan 1 2018, a trip with end date of Jan 2 2018, and a trip with end date of `nil`. The trip closest to today's current date compared to others is the trip with end date of Jan 2 2018
-  - compare those trips with each other. From those trips, pick the trip whose end date is the farthest from today's current date compared to the other trips
-    - _Ex:_ Consider the following trips: a trip with end date of Jan 1 2018 and a trip with end date of Jan 2 2018. The trip farthest from today's current date compared to others is the trip with the end date of Jan 1 2018
-  - pick the driver associated with that trip
+Modify `TripDispatcher#request_trip` to use the following rules to select a `Driver`:
+- The `Driver` must have a status of `AVAILABLE`
+- The `Driver` must not have any in-progress trips (end time of `nil`)
+- From the `Driver`s that remain, select the one whose most recent trip ended the longest time ago
+
+For example, if we have three drivers, each with two trips:
+
+Driver Name | Status        | Trip 1 end time | Trip 2 end time
+---         | ---           | ---             | ---
+Ada         | `AVAILABLE`   | Jan 3, 2018     | Jan 9, 2018
+Katherine   | `AVAILABLE`   | Jan 1, 2018     | Jan 12, 2018
+Grace       | `UNAVAILABLE` | Jan 5, 2018     | `nil`
+
+Grace is excluded because they are not `AVAILABLE`, and because they have one in-progress trip.
+
+Of Ada and Katherine, we prefer Ada, because their most recent trip is older.
 
 **All of this code must have tests.**
 
