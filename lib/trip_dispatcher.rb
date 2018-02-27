@@ -1,5 +1,7 @@
 module RideShare
   class TripDispatcher
+    attr_reader :drivers, :passengers, :trips
+
     def initialize
       @drivers = load_drivers
       @passengers = load_passengers
