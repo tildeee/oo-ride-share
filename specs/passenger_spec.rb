@@ -11,14 +11,17 @@ describe "Passenger class" do
     before do
       @passenger = RideShare::Passenger.new(id: 9, name: "Merl Glover III", phone_number: "1-602-620-2330 x3723", trips: [])
     end
+
     it "returns an array of trips" do
       @passenger.trips.must_be_kind_of Array
     end
+
     it "each item in array is a Trip instance" do
       @passenger.trips.each do |trip|
         trip.must_be_kind_of RideShare::Trip
       end
     end
+
     it "all Trips must have the same RideShare::Passenger id" do
       @passenger.trips.each do |trip|
         trip.passenger_id.must_equal 9
@@ -31,9 +34,11 @@ describe "Passenger class" do
       trips = [RideShare::Trip.new(id: 1, )]
       @passenger = RideShare::Passenger.new(id: 9, name: "Merl Glover III", phone_number: "1-602-620-2330 x3723")
     end
+
     it "returns an array" do
       @passenger.get_drivers.must_be_kind_of Array
     end
+    
     it "all items in array are Driver instances" do
       @passenger.get_drivers.each do |driver|
         driver.must_be_kind_of RideShare::Driver

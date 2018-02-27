@@ -8,6 +8,7 @@ describe "Trip class" do
       driver = RideShare::Driver.new(id: 3, name: "Lovelace", vin: "12345678912345678")
       @trip = RideShare::Trip.new({id: 8, driver: driver, passenger: pass, date: "2016-08-08", rating: 5})
     end
+    
     it "is an instance of Trip" do
       @trip.must_be_kind_of RideShare::Trip
     end
