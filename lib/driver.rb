@@ -3,7 +3,7 @@ require_relative 'trip'
 
 module RideShare
   class Driver
-    attr_reader :id, :name, :vehicle_id, :trips
+    attr_reader :id, :name, :vehicle_id, :status, :trips
 
     def initialize(input)
       if input[:id] == nil || input[:id] <= 0
@@ -13,7 +13,7 @@ module RideShare
       @id = input[:id]
       @name = input[:name]
       @vehicle_id = input[:vin]
-      @status = input[:status]
+      @status = input[:status] == nil ? :AVAILABLE : input[:status]
 
       @trips = input[:trips] == nil ? [] : input[:trips]
     end
