@@ -33,7 +33,9 @@ vehicle\_identification|The driver's Vehicle Identification Number (VIN Number),
 status|Indicating availability, a driver's availability should be either `:available` or `:unavailable`
 
 Each `Driver` instance is able to:
-- retrieve an average rating for that driver based on all trips taken
+**Method**|**Description**
+-----|-----
+average_rating  |  retrieve an average rating for that driver based on all trips taken
 
 #### Passenger
 Each `Passenger` has:
@@ -45,7 +47,9 @@ Phone Number|The Passenger's Phone Number which must be in phone number format (
 trips|A list of trips that only this passenger has taken
 
 Each `Passenger` instance is able to:
-- retrieve the list of all previous driver instances associated with trips this passenger has taken
+**Method**|**Description**
+-----|-----
+get_drivers  |  retrieve the list of all previous driver instances associated with trips this passenger has taken
 
 #### Trip
 Each `Trip` has:
@@ -57,8 +61,10 @@ driver|The driver for the trip
 rating|The rating given by the passenger, a number 1-5
 
 Each `Trip` instance is able to:
-- retrieve the associated driver instance
-- retrieve the associated passenger instance
+**Method**|**Description**
+-----|-----
+driver  |  retrieve the associated driver instance
+passenger  |  retrieve the associated passenger instance
 
 #### TripDispatcher
 The `TripDispatcher` has:
@@ -76,9 +82,11 @@ The `TripDispatcher` does the following:
 - on instantiation, loads and creates `Trip`s, `Passenger`s, and `Driver`s and stores them into collections
 
 The `TripDispatcher` instance is able to:
-- retrieve the collection of `Trip`s, `Passenger`s, and `Driver`s
-- find an instance of `Driver` given an ID
-- find an instance of `Passenger` given an ID
+**Methods**|**Description**
+-----|-----
+drivers, passengers, trips  |  retrieve the collection of `Trip`s, `Passenger`s, and `Driver`s
+find_driver  |  find an instance of `Driver` given an ID
+find_passenger  |  find an instance of `Passenger` given an ID
 
 By the end of this project, a `TripDispatcher` will be able to:
 - create new trips with assigning appropriate passengers and drivers
