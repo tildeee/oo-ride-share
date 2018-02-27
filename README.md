@@ -23,40 +23,54 @@ We are going to continue making functionality that works with this data, such as
 Each `Driver` has:
 - an ID, name, and vehicle identification number
   - Each vehicle identification number should be a specific length to ensure it is a valid vehicle identification number
+- a list of trip instances that only this driver has taken
 
 Each `Driver` instance is able to:
-- retrieve the list of trip instances that only this driver has taken
 - retrieve an average rating for that driver based on all trips taken
 
 You should be able to:
-- retrieve all drivers from the CSV file
 - find a specific driver using their numeric ID
 
 #### Passenger
 Each `Passenger` has:
 - an ID, name and phone number
+- a list of trip instances that only this passenger has taken
 
 Each `Passenger` instance is able to:
-- retrieve the list of trip instances that only this passenger has taken
-- retrieve the list of all previous driver instances associated with trips this passenger has taken (through the trips functionality listed in the previous bullet)
+- retrieve the list of all previous driver instances associated with trips this passenger has taken
 
 You should be able to:
-- retrieve all passengers from the CSV file
 - find a specific passenger using their numeric ID
 
 #### Trip
 Each `Trip` has:
-- an ID, passenger ID, a driver ID, date, rating
+- an ID, passenger, a driver, date, rating
   - Each rating should be within an acceptable range (1-5)
 
 Each `Trip` instance is able to:
 - retrieve the associated driver instance through the driver ID
 - retrieve the associated passenger instance through the passenger ID
 
-You should be able to:
-- find all trip instances for a given driver ID
-- find all trip instances for a given passenger ID
-- retrieve all trips from the CSV file
+#### TripDispatcher
+The `TripDispatcher` has:
+- a collection of `Driver`s
+- a collection of `Passenger`s
+- a collection of `Trip`s
+
+The `TripDispatcher` has the following responsibilities:
+- load collections of `Driver`s, `Passenger`s, and `Trip`s from CSV files
+- store and manage this data into separate collections
+
+The `TripDispatcher` does the following:
+- on instantiation, loads and creates `Trip`s, `Passenger`s, and `Driver`s and stores them into collections
+
+The `TripDispatcher` instance is able to:
+- retrieve the collection of `Trip`s, `Passenger`s, and `Driver`s
+- find an instance of `Driver` given an ID
+- find an instance of `Passenger` given an ID
+
+By the end of this project, a `TripDispatcher` will be able to:
+- create new trips with assigning appropriate passengers and drivers
 
 ## Getting Started
 This is a level 3, individual project.
@@ -115,3 +129,14 @@ Now that we have data for cost available for every trip, we can do some interest
 - For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
 
 **All of this code must be written TDD and have tests.**
+
+### Wave 3
+
+Our program needs a way to make new trips and appropriately assign a driver and passenger.
+
+Let's make a `TripDispatcher`
+
+- driver has add trip
+- passenger has add trip
+
+- statuses, assigning trips
