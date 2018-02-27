@@ -11,25 +11,25 @@ Reinforce and practice all of the Ruby and programming concepts we've covered in
 
 
 ## Context
-We have some a code base that already pulls data from CSV files and turns them into the following objects:
+We have a code base that already pulls data from CSV files and turns them into the following objects:
 - `Driver`s
 - `Passenger`s
 - `Trip`s
 
-We are going to continue making functionality that works with this data, such as finding the cost of a specific trip, or the total amount of money a passenger has spent.
+All of this data is managed in a class `TripDispatcher`.
+
+We are going to continue making functionality that works with this data, such as finding the cost of a specific trip, or the total amount of money a passenger has spent, and also make functionality to create a new trip.
 
 ### The Code So Far
 #### Driver
 Each `Driver` has:
-- an ID, name, and vehicle identification number
+- an ID, name, vehicle identification number, and a status indicating their availability
   - Each vehicle identification number should be a specific length to ensure it is a valid vehicle identification number
+  - a driver's availability should be either `:available` or `:unavailable`
 - a list of trip instances that only this driver has taken
 
 Each `Driver` instance is able to:
 - retrieve an average rating for that driver based on all trips taken
-
-You should be able to:
-- find a specific driver using their numeric ID
 
 #### Passenger
 Each `Passenger` has:
@@ -39,17 +39,14 @@ Each `Passenger` has:
 Each `Passenger` instance is able to:
 - retrieve the list of all previous driver instances associated with trips this passenger has taken
 
-You should be able to:
-- find a specific passenger using their numeric ID
-
 #### Trip
 Each `Trip` has:
-- an ID, passenger, a driver, date, rating
+- an ID, a passenger, a driver, and a rating
   - Each rating should be within an acceptable range (1-5)
 
 Each `Trip` instance is able to:
-- retrieve the associated driver instance through the driver ID
-- retrieve the associated passenger instance through the passenger ID
+- retrieve the associated driver instance
+- retrieve the associated passenger instance
 
 #### TripDispatcher
 The `TripDispatcher` has:
@@ -119,11 +116,7 @@ Now we want to enhance the trip functionality to include support for cost and du
 - Update the `Trip` class so it has references that hold the new data provided in that CSV
 - Update the `TripDispatcher` class so it correctly makes `Trip` instances with the new information
 - Update the `Trip` class so it can retrieve the cost for the trip
-- Update the `Trip` class so it can calculate and retrieve the duration of the trip
-
-**All of this code must have tests.**
-
-#### Optional Requirements
+- Update the `Trip` class so it can calculate and retrieve the *duration* of the trip
 
 Now that we have data for cost available for every trip, we can do some interesting data processing.
 
@@ -131,15 +124,22 @@ Now that we have data for cost available for every trip, we can do some interest
 - For a given passenger, add the ability to return the total amount of time they have spent on their trips
 - For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost _after_ a fee of $1.65 is subtracted.
 
+**All of this code must have tests.**
+
+**Exercise:** Look at this requirement in Wave 1: "For a given driver, calculate their total revenue for all trips. Each driver gets 80% of the trip cost after a fee of $1.65 is subtracted." Spend some time writing pseudocode for this.
+
 ### Wave 2
 
 Our program needs a way to make new trips and appropriately assign a driver and passenger.
 
 Let's look at our `TripDispatcher`. Add functionality in `TripDispatcher` so it can make new trips with passengers and drivers.
 - Create a new method in `TripDispatcher` whose responsibility is to make a new trip. This method should:
+  - take in as a parameter the ID of a passenger to associate with this new trip
   - randomly find a `Driver` to associate with this new trip
+  - make a new instance of `Trip`
+    - The start date of this trip is the current time
+    - The end date of this trip is `nil`
   - modify the collection of `Trip`s in that specific driver using a new helper method in `Driver`
-  - randomly find a `Passenger` to associate with this new trip
   - modify the collection of `Trip`s in that specific passenger using a new helper method in `Passenger`
   - modify the collection of `Trip`s in `TripDispatcher`
 
@@ -147,20 +147,15 @@ Let's look at our `TripDispatcher`. Add functionality in `TripDispatcher` so it 
 
 ### Wave 3
 
-We have a new dataset available to us! The new dataset provides initial statuses for drivers and passengers that represents their availability to be added to a new ride. `:available` means that a driver or passenger is available to be assigned to a new trip, and `:unavailable` means that they are not.
-
 Refactor the code in the following ways. Starting with `TripDispatcher`:
 1. Tell `TripDispatcher` to populate the collection of `Driver`s from the file `support/drivers-full.csv`
-1. Tell `TripDispatcher` to populate the collection of `Passenger`s from the file `support/passengers-full.csv`
 1. When creating new instances of `Driver`, now pass in the value for a `status` attribute
-1. When creating new instances of `Passenger`, now pass in the value for a `status` attribute
 
-Now modify `Driver` and `Passenger` to use this new information:
-1. Modify the `Driver` class so it has a references that hold the new data provided
-1. Modify the `Passenger` class so it has a references that hold the new data provided
+Now modify `Driver` to use this new information:
+1. Modify the `Driver` class so it has references that hold the new data provided
 
 Now refactor the tests and code in `TripDispatcher` to adjust the logic for creating trips
 - A new trip can only have an assigned driver whose status is `:available`
-- A new trip can only have an assigned passenger whose status is `:available`
+- This should change the driver's status to `:unavailable`
 
 **All of this code must have tests.**
