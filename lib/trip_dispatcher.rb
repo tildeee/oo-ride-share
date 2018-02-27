@@ -1,3 +1,9 @@
+require 'csv'
+
+require_relative 'driver'
+require_relative 'passenger'
+require_relative 'trip'
+
 module RideShare
   class TripDispatcher
     attr_reader :drivers, :passengers, :trips
@@ -56,27 +62,20 @@ module RideShare
     end
 
     def load_trips
-      my_file = CSV.open("support/trips.csv", headers: true)
-      trips = []
-      prng = Random.new
-      my_file.each do |line|
-        trip_hash = {}
-        trip_hash[:id] = line[0].to_i
-        driver_id = line[1].to_i
-        passenger_id = line[2].to_i
+      trip_data = CSV.open('support/trips.csv', 'r', headers: true, header_converters: :symbol)
+      return trip_data.map do |raw_trip|
+        parsed_trip = {
+          id: raw_trip[:id].to_i,
+          driver: find_driver(raw_trip[:driver_id].to_i),
+          passenger: find_passenger(raw_trip[:passenger_id].to_i),
+          start_time: raw_trip[:start_time],
+          end_time: raw_trip[:end_time],
+          cost: raw_trip[:cost].to_f,
+          rating: raw_trip[:rating].to_i
+        }
 
-        trip_hash[:driver] = find_driver(driver_id)
-        trip_hash[:passenger] = find_passenger(passenger_id)
-
-        trip_hash[:date] = line[3]
-        trip_hash[:rating] = line[4].to_f if line[4].to_f >= 1 && line[4].to_f <= 5
-        trip_hash[:cost] = prng.rand(20.01).round(2).to_f
-        trip_hash[:duration_hhmmss] = "#{prng.rand(24).to_s.rjust(2, '0')}:#{prng.rand(60).to_s.rjust(2,'0')}:#{prng.rand(60).to_s.rjust(2,'0')}"
-
-        trips << Trip.new(trip_hash)
+        Trip.new(parsed_trip)
       end
-
-      return trips
     end
 
     private

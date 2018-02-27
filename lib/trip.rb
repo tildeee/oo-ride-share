@@ -2,16 +2,20 @@ require 'csv'
 
 module RideShare
   class Trip
-    attr_reader :passenger, :driver, :rating, :id, :date, :cost, :duration_hhmmss
+    attr_reader :id, :passenger, :driver, :start_time, :end_time, :cost, :rating
 
     def initialize(input)
       @id = input[:id]
       @driver = input[:driver]
       @passenger = input[:passenger]
-      @date = input[:date]
-      @rating = input[:rating]
+      @start_time = input[:start_time]
+      @end_time = input[:end_time]
       @cost = input[:cost]
-      @duration_hhmmss = input[:duration_hhmmss]
+      @rating = input[:rating]
+
+      if @rating > 5 || @rating < 1
+        raise ArguementError.new("Invalid rating #{@rating}")
+      end
     end
   end
 end
