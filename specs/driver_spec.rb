@@ -4,7 +4,7 @@ describe "Driver class" do
 
   describe "Driver instantiation" do
     before do
-      @driver = RideShare::Driver.new(id: 1, name: "George", vin: "331333133313331333133313")
+      @driver = RideShare::Driver.new(id: 1, name: "George", vin: "33133313331333133")
     end
 
     it "is an instance of Driver" do
@@ -12,7 +12,7 @@ describe "Driver class" do
     end
 
     it "throws an argument error with a bad ID value" do
-      proc{ RideShare::Driver.new(id: 0, name: "George", vin: "331333133313331333133313")}.must_raise ArgumentError
+      proc{ RideShare::Driver.new(id: 0, name: "George", vin: "33133313331333133")}.must_raise ArgumentError
     end
 
     it "throws an argument error with a bad VIN value" do

@@ -9,8 +9,8 @@ module RideShare
       if input[:id] == nil || input[:id] <= 0
         raise ArgumentError.new("ID cannot be blank or less than zero. (got #{input[:id]})")
       end
-      if input[:vin] == nil || input[:vin].length != 24
-        raise ArgumentError.new("VIN cannot be less than 24 numbers.  (got #{input[:vin]})")
+      if input[:vin] == nil || input[:vin].length != 17
+        raise ArgumentError.new("VIN cannot be less than 17 characters.  (got #{input[:vin]})")
       end
 
       @id = input[:id]
