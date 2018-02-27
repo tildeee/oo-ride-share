@@ -4,7 +4,6 @@ require_relative 'driver'
 
 module RideShare
   class Loader
-    # DRIVER_FILE = 'support/drivers.csv'
 
     def self.load_drivers
       my_file = CSV.open('support/drivers.csv', headers: true)

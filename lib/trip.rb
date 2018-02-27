@@ -42,6 +42,6 @@ module RideShare
       return list_of_trips
     end
 
-    
+
   end
 end
