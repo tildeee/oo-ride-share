@@ -44,8 +44,8 @@ Each `Passenger` has:
 
 **Attribute**|**Description**
 -----|-----
-id|The Driver's ID number
-name|The name of the Driver
+id|The Passenger's ID number
+name|The name of the Passenger
 Phone Number|The Passenger's Phone Number which must be in phone number format (XXX) XXX-XXXX
 trips|A list of trips that only this passenger has taken
 
@@ -60,10 +60,13 @@ Each `Trip` has:
 
 **Attribute**|**Description**
 -----|-----
-id|The Driver's ID number
-passenger|The passenger on the trip
-driver|The driver for the trip
-rating|The rating given by the passenger, a number 1-5
+id | The Trip's ID number
+passenger | The passenger on the trip
+driver | The driver for the trip
+start_time | When did this trip begin?
+end_time | When did this trip finish?
+rating | The rating given by the passenger, a number 1-5
+cost | How much did the passenger pay?
 
 Each `Trip` instance is able to:
 
