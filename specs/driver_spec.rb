@@ -15,6 +15,10 @@ describe "Driver class" do
       proc{ RideShare::Driver.new(id: 0, name: "George", vin: "331333133313331333133313")}.must_raise ArgumentError
     end
 
+    it "throws an argument error with a bad VIN value" do
+      proc{ RideShare::Driver.new(id: 0, name: "George", vin: "")}.must_raise ArgumentError
+    end
+
     it "sets trips to an empty array if not provided" do
       @driver.trips.must_be_kind_of Array
       @driver.trips.length.must_equal 0
@@ -61,7 +65,7 @@ describe "Driver class" do
       @driver.average_rating.must_be_kind_of Float
     end
 
-    it "float is with range of 1.0 to 5.0" do
+    it "returns a float within range of 1.0 to 5.0" do
       average = @driver.average_rating
       average.must_be :>=, 1.0
       average.must_be :<=, 5.0
