@@ -8,6 +8,6 @@ describe "TripDispatcher class" do
 
   it "establishes the base values when instantiated" do
     dispatcher = RideShare::TripDispatcher.new
-    # dispatcher.
+    
   end
 end

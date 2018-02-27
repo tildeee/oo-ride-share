@@ -14,6 +14,11 @@ module RideShare
         input_data = {}
         # Set to a default value
         vin = line[2].length == 17 ? line[2] : "0" * 17
+
+        # Status logic
+        status = line[3]
+        status = status.to_sym
+
         input_data[:vin] = vin
         input_data[:id] = line[0].to_i
         input_data[:name] = line[1]
