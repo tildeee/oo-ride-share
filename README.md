@@ -198,7 +198,7 @@ Your code from wave 1 should _ignore_ any in-progress trips. That is to say, any
 
 You should also add explicit tests for this new situation. For example, what happens if you attempt to calculate the total money spent for a `Passenger` with an in-progress trip, or the average hourly revenue of a `Driver` with an in-progress trip?
 
-### Wave 3
+### Optional: Wave 3
 
 We want to evolve `TripDispatcher` so it assigns drivers in more intelligent ways. Every time we make a new trip, we want to pick drivers who haven't completed a trip in a long time.
 
