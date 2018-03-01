@@ -198,7 +198,6 @@ Your code from wave 1 should _ignore_ any in-progress trips. That is to say, any
 
 You should also add explicit tests for this new situation. For example, what happens if you attempt to calculate the total money spent for a `Passenger` with an in-progress trip, or the average hourly revenue of a `Driver` with an in-progress trip?
 
-<!--
 ### Optional: Wave 3
 
 We want to evolve `TripDispatcher` so it assigns drivers in more intelligent ways. Every time we make a new trip, we want to pick drivers who haven't completed a trip in a long time.
@@ -231,8 +230,6 @@ If you've done everything right, the first five trips you create should be assig
 1. `Driver 75: Mohammed Barrows (last trip 184 ended 2016-04-01T16:26:00+00:00)`
 
 **All of this code must have tests.**
-
--->
 
 ## What Instructors Are Looking For
 Check out the [feedback template](feedback.md) which lists the items instructors will be looking for as they evaluate your project.
