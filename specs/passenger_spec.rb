@@ -75,4 +75,10 @@ describe "Passenger class" do
       end
     end
   end
+
+  describe "total_time method" do
+    it "accurately calculates" do
+      
+    end
+  end
 end
