@@ -55,6 +55,12 @@ describe "Driver class" do
     end
   end
 
+  describe "calculates average rev per hour" do
+    it "calculates average rev per hour for one trip" do
+      
+    end
+  end
+
   describe "average_rating method" do
     before do
       @driver = RideShare::Driver.new(id: 54, name: "Rogers Bartell IV", vin: "1C9EVBRM0YBC564DZ")
