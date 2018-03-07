@@ -76,6 +76,11 @@ describe "Passenger class" do
     end
   end
 
+  describe "total_time method" do
+    it "accurately calculates" do
+    end
+  end
+  
   describe "calculate total money spent" do
     it "accurately calculates total money spent for one trip" do
       # Implemented the thing
